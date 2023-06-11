@@ -10,7 +10,7 @@ Azure Databricks is a Microsoft Azure-based version of the popular open-source D
 
 Similarly to Azure Synapse Analytics, an Azure Databricks *workspace* provides a central point for managing Databricks clusters, data, and resources on Azure.
 
-This exercise should take approximately **30** minutes to complete.
+This exercise should take approximately **60** minutes to complete.
 
 ## Before you start
 
