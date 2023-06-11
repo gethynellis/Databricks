@@ -8,7 +8,7 @@ lab:
 
 In this exercise, you'll load data into a dedicated SQL Pool using a pipeline in Azure Synapse Analytics Explorer. The pipeline will encapsulate a data flow that loads product data into a table in a data warehouse.
 
-This exercise should take approximately **45** minutes to complete.
+This exercise should take approximately **60** minutes to complete.
 
 ## Before you start
 
