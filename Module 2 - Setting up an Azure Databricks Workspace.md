@@ -35,7 +35,7 @@ The provisioning process will take several minutes to complete. Be patient.
 
 #### Step 5: Access your Databricks workspace.
 
-After the deployment is completed, go to the resource you just created.
+After the deployment is completed, go to the resource you just created. Click **Go to Resource**
 Click on the **Launch Workspace** button to open your Databricks workspace.
 Congratulations, you have successfully created an Azure Databricks Workspace!
 
@@ -69,6 +69,7 @@ Provide a name for your cluster in the **Cluster Name** field.
 Select the Databricks Runtime Version from the dropdown. (As a beginner, you can use the latest version.)
 Choose the Worker Type. For this lab, you can select **Standard_DS3_v2,** which is suitable for general purposes.
 Set the number of Worker Nodes. You can specify a minimum and maximum. For this lab, you can start with a minimum of 2 and a maximum of 8. This allows the cluster to auto-scale based on demand.
+Change the **terminate after** value to read **10** minutes
 
 #### Step 4: Configure advanced options (optional).
 
@@ -81,12 +82,12 @@ Review the cluster configuration and click on the **Create Cluster** button.
 
 #### Step 6: Monitor your cluster.
 
-Once the cluster is created, it should be listed under **Clusters** in your workspace.
+Once the cluster is created, it should be listed under **Compute** in your workspace.
 You can see the current state of your cluster. It might take a few minutes for the cluster to start.
 
 ####  Step 7: Test the cluster.
 
-Create a new notebook (from the left-hand menu, select Workspace > Create > Notebook).
+Create a new notebook (from the left-hand menu, select **New +**  > **Notebook**).
 Attach your new notebook to the cluster you created (using the **Attached/Detached** option in the notebook).
 Write some simple Spark code to test your cluster, such as a PySpark command to create a dataframe.
 
