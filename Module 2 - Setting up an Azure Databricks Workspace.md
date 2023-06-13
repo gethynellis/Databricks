@@ -121,8 +121,8 @@ Click **Create.**
 #### Step 3: Attach your notebook to a cluster.
 
 Open your notebook.
-Click on the **Clusters** button in the upper left corner of the notebook.
-Select your previously created cluster from the drop-down list.
+Click on the **Clusters** drop down in the top menu bar of the notebook.
+If it is not selected. Select your previously created cluster from the drop-down list.
 
 #### Step 4: Write and run some code in your notebook.
 
