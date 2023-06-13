@@ -1,28 +1,25 @@
 
-**Lab Exercise - Apache Spark, Spark Core, Spark SQL, and Spark Streaming**
+## Lab Exercise - Apache Spark, Spark Core, Spark SQL, and Spark Streaming ##
 
-**Exercise 1: Spark Core & RDDs**
 
-**Step 1: Initializing a Spark Context**
 
-This step is about setting up a SparkContext. In Spark, communication occurs between a driver and executors. The driver has Spark jobs that it needs to run and these jobs are split into tasks that are submitted to the executors for completion. The results from these tasks are delivered back to the driver. Here, we're initiating a SparkContext object, which tells Spark how to access a cluster. The "local" argument means that we're running it on a local machine.
+**Lab Exercise - Azure Databricks with Spark, Spark Core, Spark SQL, and Structured Streaming**
 
-1. Open your Python IDE and start a new project.
-2. Import the SparkContext from pyspark, initialize it and test it with a simple operation.
+## Exercise 1: Spark Core & RDDs ##
 
+Step 1: Initializing a Spark Context
+
+In Azure Databricks, a SparkContext is already created for you and is named "sc".
+
+Use this existing SparkContext to run a simple operation.
 ```python
-from pyspark import SparkContext
-sc = SparkContext("local", "First App")
 data = sc.parallelize([1,2,3,4,5])
 print(data.count())
 ```
 
-**Step 2: Understanding RDD operations**
+Step 2: Understanding RDD operations
 
-Resilient Distributed Datasets (RDDs) are a fundamental data structure in Spark. They are an immutable distributed collection of objects, which can be processed in parallel. This step is about creating an RDD (using sc.parallelize) from a list of words, then using a map operation to create a new RDD which contains the length of each word.
-
-1. Create an RDD from a list of words.
-2. Use map() transformation to create a new RDD that contains the length of each word.
+This step is about creating an RDD from a list of words and using a map operation to create a new RDD which contains the length of each word.
 
 ```python
 words = sc.parallelize(["scala", "java", "hadoop", "spark", "akka"])
@@ -30,25 +27,15 @@ wordLengths = words.map(lambda s: len(s))
 print(wordLengths.collect())
 ```
 
-**Exercise 2: Spark SQL & DataFrames**
+Exercise 2: Spark SQL & DataFrames
 
-**Step 1: Initializing a Spark Session**
+Step 1: Initializing a Spark Session
 
-This step involves creating a SparkSession - the entry point to any Spark functionality. When you create a SparkSession, SparkContext will be automatically created.
+In Azure Databricks, a SparkSession is also pre-configured for you, named "spark".
 
-1. Import the SparkSession from pyspark.sql, and initialize it.
+Step 2: Creating a DataFrame
 
-```python
-from pyspark.sql import SparkSession
-spark = SparkSession.builder.appName('sql_demo').getOrCreate()
-```
-
-**Step 2: Creating a DataFrame**
-
-Here we create a DataFrame, which is a distributed collection of data organized into named columns. It is conceptually equivalent to a table in a relational database. We create the DataFrame from a list of tuples, where each tuple represents a row of data.
-
-1. Create a simple DataFrame from a list of tuples.
-2. Show the DataFrame.
+Here we create a DataFrame from a list of tuples, each representing a row of data.
 
 ```python
 data = [("James","Smith","USA",30),
@@ -56,61 +43,45 @@ data = [("James","Smith","USA",30),
         ("Robert","Williams","USA",24)]
 columns = ["FirstName","LastName","Country","Age"]
 df = spark.createDataFrame(data=data, schema = columns)
-df.show()
+display(df)
 ```
 
-**Step 3: Running SQL Queries**
+Step 3: Running SQL Queries
 
-DataFrames can be registered as temporary tables in Spark SQL, and SQL queries can be executed against them. In this step, we register our DataFrame as a temporary table and then run a simple SQL query to select records where the age is greater than 25.
-
-1. Register the DataFrame as a SQL temporary view.
-2. Use the sql() method of your SparkSession to execute SQL queries.
+You can register the DataFrame as a temporary view and execute SQL queries against it. Here, we select records where the age is greater than 25.
 
 ```python
 df.createOrReplaceTempView("PEOPLE")
 result = spark.sql("SELECT * FROM PEOPLE where Age > 25")
-result.show()
+display(result)
 ```
 
-**Exercise 3: Spark Streaming**
+Exercise 3: Structured Streaming in Databricks
 
-This part of the lab requires a real-time data source for a meaningful demonstration, which is beyond the scope of this setup. However, we'll use a simple example of processing a data stream.
+Step 1: Initializing a Streaming DataFrame
 
-**Step 1: Initializing a StreamingContext**
-
-The StreamingContext is the main entry point for all streaming functionality. We create a local StreamingContext with two execution threads, and a batch interval of one second.
-
-1. Import the StreamingContext from pyspark.streaming, and initialize it with a batch interval of 1 second.
+Instead of a StreamingContext, we're going to use Spark's structured streaming to create a streaming DataFrame. Here we read from a socket source on localhost and port 9999. Please note that Azure Databricks does not allow you to read from localhost, so you'll have to replace "localhost" with the correct IP address.
 
 ```python
-from pyspark.streaming import StreamingContext
-ssc = StreamingContext(sc, 1)
+lines = spark.readStream.format("socket").option("host", "localhost").option("port", 9999).load()
 ```
 
-**Step 2: Creating a DStream**
+Step 2: Processing the Streaming DataFrame
 
-A DStream (Discretized Stream) is a sequence of data arriving over time. Here, we're creating a DStream that connects to a TCP source on localhost on port 9999.
-
-1. For this demo, we will create a DStream that receives data from a local TCP source (localhost and port 9999). To simulate a data source, open a new terminal window, start netcat (a simple utility for reading from and writing to network connections using TCP) by typing `nc -lk 9999`.
+This step defines the actual processing logic. We want to split each line into multiple words. This is achieved by using the `split` function from `pyspark.sql.functions`.
 
 ```python
-lines = ssc.socketTextStream("localhost", 9999)
+from pyspark.sql.functions import split, explode
+words = lines.select(explode(split(lines.value, " ")).alias("word"))
 ```
 
-**Step 3: Processing the DStream**
+Step 3: Start Streaming
 
-This step defines the actual processing logic. We want to split each line into multiple words. The flatMap operation is a transformation operation that applies the lambda function to each element of the DStream to generate multiple output elements.
-
-
-
-1. Define a simple processing logic - split each line into words.
+In this step, you start the computation with `writeStream.start()`. Before starting the stream, set up an action for the processed data, e.g., write the data to the console for this exercise.
 
 ```python
-words = lines.flatMap(lambda line: line.split(" "))
+query = words.writeStream.outputMode("append").format("console").start()
+query.awaitTermination()
 ```
 
-**Step 4: Start Streaming**
-
-In this step, you would typically start the computation with ssc.start() and await termination with ssc.awaitTermination(). Before starting the stream, we'd set up an action for the processed data. Actions trigger the execution of the data processing, and in a real-world scenario, this might be saving the data out to a database or filesystem. However, this part is omitted here due to the scope of the setup.
-
-1. Before you start streaming, you need to set up an action for the processed data.
+In a real-world scenario, you might want to write the data out to a database or filesystem. The Structured Streaming programming guide provides more details on output sinks and how to write out data.
