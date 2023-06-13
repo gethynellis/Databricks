@@ -17,7 +17,7 @@ Navigate to the Azure portal (portal.azure.com) and sign in with your Azure acco
 
 In the Azure portal, click on "Create a resource" in the left-hand menu.
 In the "New" window, search for "Databricks."
-In the search results, select "Azure Databricks" and then click "Create."
+In the search results, select "Azure Databricks" and then click "Create Azure Databricks Service."
 
 #### Step 3: Configure your Databricks workspace.
 
