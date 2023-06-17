@@ -8,7 +8,33 @@
 
 1. Set up your Azure Blob Storage account if you haven't already. Remember to note your account name and account key.
 
-2. Configure the connection to your Azure Blob Storage account by providing the account name and account key:
+   You can follow these steps to set up the account up your Azure Blob Storage account:
+
+ - Visit the Azure Portal: Go to the Azure portal website (https://portal.azure.com) and sign in with your Azure account credentials.
+- Create a new storage account: Once you're logged in, navigate to the Azure portal dashboard and click on the "Create a resource" button.
+
+- Search for "Storage account": In the search bar at the top of the Azure portal, type "Storage account" and select the "Storage account - blob, file, table, queue" option from the search results.
+
+- Choose subscription and resource group: In the "Create storage account" page, select the appropriate subscription from the drop-down menu and choose or create a resource group to contain your storage account.
+
+- Specify storage account settings: Provide a unique name for your storage account, keeping in mind that the name must be globally unique across all Azure accounts. Select the appropriate location for your storage account and choose the performance tier (Standard or Premium).
+
+- Configure advanced settings: Expand the "Advanced" tab to configure additional settings. Here you can choose the account kind, replication option, and access tier. For general purpose storage, the default options are typically sufficient.
+
+- Secure your storage account: In the "Networking" tab, you can configure network access and firewall rules for your storage account. Adjust these settings based on your specific requirements.
+
+- Review and create the storage account: Double-check all the settings you've specified, ensuring that they match your requirements. Once you're satisfied, click on the "Review + create" button.
+
+-  Create the storage account: After clicking "Review + create," Azure will validate your settings and create the storage account. Wait for the deployment process to complete.
+
+-  Retrieve your account name and account key: Once the storage account is successfully created, navigate to the account's overview page. You can find the account name and account key in the "Settings" section of the overview.
+
+- Note your account name and account key: Make sure to write down or securely store the account name and account key.
+- **These credentials are essential for accessing and managing your Azure Blob Storage account programmatically.**
+
+With these steps, you should be able to set up your Azure Blob Storage account successfully and have the necessary account name and account key information readily available.
+
+3. Configure the connection to your Azure Blob Storage account by providing the account name and account key:
 
     ```python
     spark.conf.set(
@@ -17,13 +43,13 @@
     )
     ```
 
-3. Load a sample dataset from Azure Blob Storage into a Spark DataFrame:
+4. Load a sample dataset from Azure Blob Storage into a Spark DataFrame:
 
     ```python
     df = spark.read.format("csv").option("header", "true").load("wasbs://<your-container>@<your-storage-account-name>.blob.core.windows.net/<your-file>")
     ```
 
-4. Verify that the data has been loaded correctly by displaying the first few rows of the DataFrame:
+5. Verify that the data has been loaded correctly by displaying the first few rows of the DataFrame:
 
     ```python
     df.show()
