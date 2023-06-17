@@ -21,8 +21,10 @@ UtilityCo is a leading utility company that provides electricity, gas, and water
 
 In your groups discuss the scenario and answer the following questions
 
-How can Azure Databricks help UtilityCo address the challenges mentioned above and make better use of their data for decision-making purposes?
-What specific features and capabilities of Azure Databricks can be leveraged to overcome the data-related problems faced by UtilityCo?
-Considering the scenario, are there any other technologies or platforms that could potentially provide a solution to the challenges faced by UtilityCo?
+1. How can Azure Databricks help UtilityCo address the challenges mentioned above and make better use of their data for decision-making purposes?
+2. What specific features and capabilities of Azure Databricks can be leveraged to overcome the data-related problems faced by UtilityCo?
+3. Considering the scenario, are there any other technologies or platforms that could potentially provide a solution to the challenges faced by UtilityCo?
 
 Nominate someone as a scribe and spokesperson so you can present your findings back to the class
+
+You will be given 40 minutes to prepare you answers and you will given 5 minutes to present your findings. We suggest you put a three slide presentation together so you present you answers
