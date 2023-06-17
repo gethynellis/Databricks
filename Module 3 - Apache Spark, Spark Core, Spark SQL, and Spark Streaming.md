@@ -1,6 +1,8 @@
 
 ## Lab Exercise - Apache Spark, Spark Core, Spark SQL, and Spark Streaming ##
 
+We will use a Databricks notebook to run the code in this example
+
 
 
 **Lab Exercise - Azure Databricks with Spark, Spark Core, Spark SQL, and Structured Streaming**
