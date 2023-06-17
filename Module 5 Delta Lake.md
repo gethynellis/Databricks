@@ -12,7 +12,7 @@ Tasks: Install Apache Spark and Delta Lake on the system. Verify the installatio
 
 **Exercise 2: Creating a Delta Table**
 Objective: To understand how to create Delta tables in Delta Lake.
-Tasks: Create a Delta table using sample data. Write a command to view the schema and the contents of the table.
+Tasks: Create a Delta table using sample data. Write a command to view the schema and the contents of the table. You will use a Notebook and the language should be Scala
 
 1. First, let's create some sample data. Run the following commands:
 ```scala
