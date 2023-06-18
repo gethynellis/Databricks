@@ -3,6 +3,34 @@
 
 We will use a Databricks notebook to run the code in this example
 
+To create an Azure Databricks notebook, follow these steps:
+
+**1. Sign in to the Azure portal**
+
+This should be there already
+
+**2. Create an Azure Databricks workspace**
+
+This should be there alreadt
+
+**3. Launch Azure Databricks workspace**
+
+- Go to the Azure portal's home page, click on 'Resource groups', then click on the resource group where you created your Databricks workspace.
+- Click on the Databricks workspace.
+- Click on 'Launch Workspace' at the top right corner of the screen.
+
+**4. Create a notebook**
+
+- Once you're in the Databricks workspace, on the left-hand menu, click 'Workspace'.
+- Click on 'Users' and then click on your user.
+- Right-click your user folder and select 'Create' > 'Notebook'.
+- Enter a name for the notebook.
+- Choose the language (Python, Scala, SQL, or R) from the drop-down menu.
+- Click 'Create'.
+
+Now you've created a notebook and you can begin writing code. Remember to attach your notebook to a cluster in order to execute commands. You can do this by clicking 'Detached' at the top-left corner of the notebook and then selecting a cluster.
+harges.
+
 
 
 **Lab Exercise - Azure Databricks with Spark, Spark Core, Spark SQL, and Structured Streaming**
