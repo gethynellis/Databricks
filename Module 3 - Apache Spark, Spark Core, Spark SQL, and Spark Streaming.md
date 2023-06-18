@@ -1,17 +1,28 @@
 
 ## Lab Exercise - Apache Spark, Spark Core, Spark SQL, and Spark Streaming ##
 
-We will use a Databricks notebook to run the code in this example
+We will use a Databricks notebook to run the code in this example, You need to create a Notebook before you can complete the exercises
+
+### Create a Notebook
+To create an Azure Databricks notebook, follow these steps, **(note it is very likely that most of these steps you will have completed already, if you have completed them simply move to the next step)**:
+
 
 To create an Azure Databricks notebook, follow these steps:
 
 **1. Sign in to the Azure portal**
 
-This should be there already
+Firstly, you need to have an Azure account and be able to sign in to the Azure portal. If you don't have an account, you can create one. 
 
 **2. Create an Azure Databricks workspace**
 
-This should be there alreadt
+- In the Azure portal, click on 'Create a resource'.
+- In the search bar, type 'Azure Databricks'.
+- Select 'Azure Databricks' from the search results.
+- Click 'Create' and you'll be prompted to fill in details for your workspace. 
+- Select your subscription.
+- Create a new resource group or use an existing one.
+- Name your workspace, select the region, and select the pricing tier.
+- Click 'Review + Create', then click 'Create'.
 
 **3. Launch Azure Databricks workspace**
 
@@ -29,8 +40,6 @@ This should be there alreadt
 - Click 'Create'.
 
 Now you've created a notebook and you can begin writing code. Remember to attach your notebook to a cluster in order to execute commands. You can do this by clicking 'Detached' at the top-left corner of the notebook and then selecting a cluster.
-harges.
-
 
 
 **Lab Exercise - Azure Databricks with Spark, Spark Core, Spark SQL, and Structured Streaming**
