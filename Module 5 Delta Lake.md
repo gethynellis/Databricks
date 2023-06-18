@@ -4,6 +4,8 @@
 Objective: To set up a working environment using Apache Spark and Delta Lake.
 Tasks: Install Apache Spark and Delta Lake on the system. Verify the installation by running a simple command.
 
+**You only need to create a new cluster if you don't one that exists already. If you have an Azure Databricks space and cluster created only need to open the Notebook**
+
 1. Open Azure Databricks in your browser and navigate to your workspace.
 2. Start a new cluster or use an existing one. *You should have a cluster provisioned. You may need to start it from the **Compute Section** of the workspace.*
 3. Install the required libraries for Delta Lake (if they're not already installed). To do this, navigate to your cluster settings, select "Libraries" and click "Install New". Choose "Maven" and enter the coordinates for Delta Lake, then click "Install".
