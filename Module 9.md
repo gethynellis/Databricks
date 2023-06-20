@@ -101,16 +101,36 @@ df.show()
 Perform a pivot operation on a DataFrame to create a summary report.
 
 ```python
-pivotDF = df.groupBy('column1').pivot('column2').sum('numeric_column')
+from pyspark.sql import SparkSession
+
+# Create a SparkSession
+spark = SparkSession.builder.appName("PivotExample").getOrCreate()
+
+# Create DataFrame
+data = [("James", "Sales", 3000), 
+        ("Michael", "Sales", 4600), 
+        ("Robert", "Sales", 4100), 
+        ("Maria", "Finance", 3000), 
+        ("James", "Sales", 3000), 
+        ("Scott", "Finance", 3300), 
+        ("Jen", "Finance", 3900), 
+        ("Jeff", "Marketing", 3000), 
+        ("Kumar", "Marketing", 2000), 
+        ("Saif", "Sales", 4100)]
+
+df = spark.createDataFrame(data, ["Employee Name", "Department", "Salary"])
+
+# Pivot DataFrame
+pivotDF = df.groupBy('Department').pivot('Employee Name').sum('Salary')
 pivotDF.show()
 ```
 
 ## Exercise 2
 
-Use rollup to create a hierarchical summary report.
+Use roll up to create a hierarchical summary report. We will use the order by command to sort the results lowest to highest
 
 ```python
-rollupDF = df.rollup('column1', 'column2').sum('numeric_column')
+rollupDF = df.rollup('Department', 'Employee Name').sum('Salary').orderBy('sum(salary)', ascedning=False)
 rollupDF.show()
 ```
 
