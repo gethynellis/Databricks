@@ -1,4 +1,4 @@
-Sure, let's walk through these labs in Azure Databricks.
+Let's walk through these labs in Azure Databricks.
 
 # Lab 1: UDFs and Custom Transformations
 
