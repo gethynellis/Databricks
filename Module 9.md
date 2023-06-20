@@ -33,11 +33,34 @@ df.show()
 Create a custom transformation that will standardize a numeric column (subtract mean and divide by standard deviation). 
 
 ```python
-mean_val = df.select(mean(df['numeric_column'])).collect()[0][0]
-stddev_val = df.select(stddev(df['numeric_column'])).collect()[0][0]
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import mean, stddev
 
-df = df.withColumn('standardized_column', (df['numeric_column'] - mean_val) / stddev_val)
+# Create a SparkSession
+spark = SparkSession.builder.appName("Standardization").getOrCreate()
+
+# Create DataFrame
+data = [("James", "Sales", 3000), 
+        ("Michael", "Sales", 4600), 
+        ("Robert", "Sales", 4100), 
+        ("Maria", "Finance", 3000), 
+        ("James", "Sales", 3000), 
+        ("Scott", "Finance", 3300), 
+        ("Jen", "Finance", 3900), 
+        ("Jeff", "Marketing", 3000), 
+        ("Kumar", "Marketing", 2000), 
+        ("Saif", "Sales", 4100)]
+
+df = spark.createDataFrame(data, ["Employee Name", "Department", "Salary"])
+
+# Calculate mean and standard deviation
+mean_val = df.select(mean(df['Salary'])).collect()[0][0]
+stddev_val = df.select(stddev(df['Salary'])).collect()[0][0]
+
+# Perform standardization
+df = df.withColumn('standardized_salary', (df['Salary'] - mean_val) / stddev_val)
 df.show()
+
 ```
 
 # Lab 2: Window Functions
@@ -54,8 +77,10 @@ from pyspark.sql.functions import sum as _sum, rank
 Use a window function to calculate the running total of a numeric column in a DataFrame.
 
 ```python
-windowSpec = Window.orderBy('numeric_column')
-df = df.withColumn('running_total', _sum('numeric_column').over(windowSpec))
+windowSpec = Window.orderBy('Salary')
+
+# Add running total column
+df = df.withColumn('running_total', _sum('Salary').over(windowSpec))
 df.show()
 ```
 
@@ -64,7 +89,7 @@ df.show()
 Use a window function to rank rows based on a specific condition.
 
 ```python
-windowSpec = Window.orderBy(df['numeric_column'].desc())
+windowSpec = Window.orderBy(df['Salary'].desc())
 df = df.withColumn('rank', rank().over(windowSpec))
 df.show()
 ```
