@@ -19,6 +19,7 @@ Tasks: Create a Delta table using sample data. Write a command to view the schem
 1. First, let's create some sample data. Run the following commands:
 ```scala
 import spark.implicits._
+import io.delta.tables.DeltaTable
 
 val data = Seq(("James", "Smith", "USA"), ("Michael", "Rose", "USA"), ("Robert", "Williams", "USA"))
 val df = data.toDF("firstname", "lastname", "country")
