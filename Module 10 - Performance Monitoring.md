@@ -22,6 +22,50 @@
 
 **Step 4: Load a Dataset**
 
+Download the CSV file: You can manually download the CSV file from https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv and save it to your local machine or cloud storage that your Spark environment has access to.
+
+In A new notebook run the following
+
+```
+# File location and type
+file_location = "/FileStore/tables/Titantic.csv"
+file_type = "csv"
+
+# CSV options
+infer_schema = "false"
+first_row_is_header = "false"
+delimiter = ","
+
+# The applied options are for CSV files. For other file types, these will be ignored.
+df = spark.read.format(file_type) \
+  .option("inferSchema", infer_schema) \
+  .option("header", first_row_is_header) \
+  .option("sep", delimiter) \
+  .load(file_location)
+
+display(df)
+```
+
+Then we want to create a temporay view so run the followin
+
+```
+# Create a view or table
+
+temp_table_name = "Titantic_csv"
+
+df.createOrReplaceTempView(temp_table_name)
+```
+
+Then we can run a SQL query against the view
+
+```
+%sql
+
+/* Query the created temp table in a SQL cell */
+
+select * from `Titantic_csv`
+```
+
 1. In the notebook, use Spark's data loading functions to load a large public dataset. 
     ```
     df = spark.read.format('csv').option('header', 'true').load('<dataset_url>')
