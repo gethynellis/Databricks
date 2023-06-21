@@ -71,36 +71,19 @@ select * from `Titantic_csv`
     df = spark.read.format('csv').option('header', 'true').load('<dataset_url>')
     ```
 
-**Step 5: Write a Data Processing Pipeline**
 
-1. Implement a data processing pipeline using Spark transformations and actions. For example, a pipeline could filter rows, group data, and calculate aggregate statistics.
 
-**Step 6: Run the Pipeline**
-
-1. Run the pipeline by executing the notebook cells.
-2. Note the time it takes to complete and the resources it uses.
-
-**Step 7: Open Spark UI and Inspect the Application**
+**Step 6: Open Spark UI and Inspect the Application**
 
 1. Go to the "Clusters" menu in the Databricks sidebar.
 2. Click on the cluster running your notebook, and then click on "Apps".
 3. Click on "Spark UI" next to your active application.
 
-**Step 8: Identify Performance Bottlenecks**
+**Step 7: Identify Performance Bottlenecks**
 
 1. In Spark UI, go to the "Stages" tab to inspect the stages and tasks of the application.
 2. Look for stages with high task durations, high shuffle read/write, or high I/O, which could indicate performance bottlenecks.
 
-**Step 9: Optimize the Pipeline**
 
-1. Based on the identified bottlenecks, optimize the pipeline. This could involve:
-    - Changing transformations to more efficient ones.
-    - Using broadcast variables for small datasets in a join operation.
-    - Adjusting the resources allocated to the Spark application.
-
-**Step 10: Run the Optimized Pipeline and Compare**
-
-1. Run the optimized pipeline in the Databricks notebook.
-2. Compare the runtime, resource usage, and cost to the original pipeline. 
 
 **Note:** Be sure to stop the Databricks cluster after the exercise to avoid unnecessary costs.
