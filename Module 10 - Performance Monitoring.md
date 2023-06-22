@@ -22,7 +22,7 @@
 
 **Step 4: Load a Dataset**
 
-Download the CSV file: You can manually download the CSV file from https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv and save it to your local machine or cloud storage that your Spark environment has access to.
+Download the CSV file: You can manually download a  CSV file from https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv and https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv and save it to your local machine .
 
 In A new notebook run the following
 
